@@ -194,9 +194,9 @@ class RfLint(object):
         else:
             self.counts["other"] += 1
 
-        print(self.args.format.format(linenumber=linenumber, filename=filename,
-                                      severity=severity, message=message,
-                                      rulename=rulename, char=char))
+        print(self.args.format.decode('utf-8').format(linenumber=linenumber, filename=filename,
+                                                      severity=severity, message=message,
+                                                      rulename=rulename, char=char))
 
     def _get_rules(self, cls):
         """Returns a list of rules of a given class
