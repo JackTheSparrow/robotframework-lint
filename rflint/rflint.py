@@ -194,9 +194,6 @@ class RfLint(object):
         else:
             self.counts["other"] += 1
 
-        if sys.version_info[0] == 2:
-            self.args.format = self.args.format.decode('utf-8')
-
         print(self.args.format.format(linenumber=linenumber, filename=filename,
                                       severity=severity, message=message,
                                       rulename=rulename, char=char))
@@ -292,6 +289,9 @@ class RfLint(object):
         ns = argparse.Namespace()
         setattr(ns, "app", self)
         args = parser.parse_args(args, ns)
+
+        if sys.version_info[0] == 2:
+            args.format = args.format.decode('utf-8')
 
         Rule.output_format = args.format
 
